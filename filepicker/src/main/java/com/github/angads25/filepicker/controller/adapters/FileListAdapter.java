@@ -101,12 +101,6 @@ public class FileListAdapter extends BaseAdapter{
         }
         if (item.isDirectory()) {
             holder.type_icon.setImageResource(R.mipmap.ic_type_folder);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                holder.type_icon.setColorFilter(context.getResources().getColor(R.color.colorPrimary,context.getTheme()));
-            }
-            else
-            {   holder.type_icon.setColorFilter(context.getResources().getColor(R.color.colorPrimary));
-            }
             if(properties.selection_type == DialogConfigs.FILE_SELECT)
             {   holder.fmark.setVisibility(View.INVISIBLE);
             }
@@ -116,12 +110,6 @@ public class FileListAdapter extends BaseAdapter{
         }
         else {
             holder.type_icon.setImageResource(R.mipmap.ic_type_file);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                holder.type_icon.setColorFilter(context.getResources().getColor(R.color.colorAccent,context.getTheme()));
-            }
-            else
-            {   holder.type_icon.setColorFilter(context.getResources().getColor(R.color.colorAccent));
-            }
             if(properties.selection_type == DialogConfigs.DIR_SELECT)
             {   holder.fmark.setVisibility(View.INVISIBLE);
             }

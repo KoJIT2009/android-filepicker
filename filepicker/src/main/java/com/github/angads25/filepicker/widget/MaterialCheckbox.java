@@ -16,17 +16,17 @@
 
 package com.github.angads25.filepicker.widget;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
-import android.os.Build;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.View;
-
-import com.github.angads25.filepicker.R;
 
 /**
  * <p>
@@ -75,23 +75,29 @@ public class MaterialCheckbox extends View {
         setOnClickListener(onClickListener);
     }
 
+    @SuppressLint("ResourceAsColor")
     @Override
     @SuppressWarnings("deprecation")
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+
+        TypedValue typedValue = new TypedValue();
+        Resources.Theme theme = context.getTheme();
+        theme.resolveAttribute(android.R.attr.colorBackground, typedValue, true);
+        int colorBackground = typedValue.data;
+
+        TypedValue typedValue2 = new TypedValue();
+        theme.resolveAttribute(android.R.attr.textColorPrimary, typedValue2, true);
+        int colorText = typedValue2.data;
+
         if(isChecked()) {
             paint.reset();
             paint.setAntiAlias(true);
             bounds.set(minDim / 10, minDim / 10, minDim - (minDim/10), minDim - (minDim/10));
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                paint.setColor(getResources().getColor(R.color.colorAccent, context.getTheme()));
-            }
-            else {
-                paint.setColor(getResources().getColor(R.color.colorAccent));
-            }
+            paint.setColor(colorBackground);
             canvas.drawRoundRect(bounds, minDim / 8, minDim / 8, paint);
 
-            paint.setColor(Color.parseColor("#FFFFFF"));
+            paint.setColor(colorText);
             paint.setStrokeWidth(minDim/10);
             paint.setStyle(Paint.Style.STROKE);
             paint.setStrokeJoin(Paint.Join.BEVEL);
@@ -101,11 +107,11 @@ public class MaterialCheckbox extends View {
             paint.reset();
             paint.setAntiAlias(true);
             bounds.set(minDim / 10, minDim / 10, minDim - (minDim/10), minDim - (minDim/10));
-            paint.setColor(Color.parseColor("#C1C1C1"));
+            paint.setColor(colorText);
             canvas.drawRoundRect(bounds, minDim / 8, minDim / 8, paint);
 
             bounds.set(minDim / 5, minDim / 5, minDim - (minDim/5), minDim - (minDim/5));
-            paint.setColor(Color.parseColor("#FFFFFF"));
+            paint.setColor(colorBackground);
             canvas.drawRect(bounds, paint);
         }
     }
