@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.github.angads25.filepickerdemo"
-        minSdkVersion 14
+        minSdkVersion 18
         targetSdkVersion 27
         versionCode 4
         versionName "1.0.3"
